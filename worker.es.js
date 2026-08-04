@@ -169,6 +169,11 @@ export default {
             resHdrNew.set('access-control-expose-headers', '*')
             resHdrNew.set('access-control-allow-origin', '*')
 
+            if (urlObj.href.endsWith(".css")) {
+                const contentType = resHdrOld.get('Content-Type')
+                resHdrNew.set('content-type', contentType.replace("text/plain", "text/css"))
+            }
+
             resHdrNew.delete('content-security-policy')
             resHdrNew.delete('content-security-policy-report-only')
             resHdrNew.delete('clear-site-data')
